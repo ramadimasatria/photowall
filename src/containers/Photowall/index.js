@@ -1,9 +1,17 @@
+/* eslint-disable react/prefer-stateless-function */
+
 import React from 'react';
 
-const Photowall = () => (
-  <div>
-    Photowall goes here...
-  </div>
-);
+import styles from './index.css';
+
+class Photowall extends React.Component {
+  render() {
+    return (
+      <div className={styles.photowall}>
+        Photowall goes here...
+      </div>
+    );
+  }
+}
 
 export default Photowall;
