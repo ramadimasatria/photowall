@@ -1,0 +1,14 @@
+.photowall {
+  padding: 15px;
+  text-align: center;
+}
+
+.title {
+  margin: 15px;
+  font-size: 28px;
+}
+
+.gridContainer {
+  width: 1200px;
+  margin: 0 auto;
+}

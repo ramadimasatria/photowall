@@ -1,0 +1,11 @@
+.tile {
+  position: absolute;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.tileContent {
+  background-color: #ccc;
+  height: 100%;
+  overflow: hidden;
+}

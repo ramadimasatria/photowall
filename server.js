@@ -4,6 +4,29 @@ const app = express();
 
 /************************************************************
  *
+ * API routes
+ *
+ ************************************************************/
+
+app.get('/photos', (req, res) => {
+  const PHOTO_COUNT = 100
+  const photos = [];
+
+  for (var i = 0; i < PHOTO_COUNT; i++) {
+    const randomer = Math.floor(Math.random() * (10 - 1)) + 1; // Get random integer between 1 to 10
+    const photo = {
+      id: i,
+      url: `http://lorempixel.com/200/200/people/${randomer}`,
+      name: 'John Doe'
+    };
+    photos.push(photo);
+  }
+
+  res.send(JSON.stringify(photos));
+});
+
+/************************************************************
+ *
  * Express routes for:
  *   - app.js
  *   - style.css
@@ -33,7 +56,6 @@ app.get('/style.css', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/build/index.html');
 });
-
 
 /*************************************************************
  *
