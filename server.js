@@ -9,15 +9,31 @@ const app = express();
  ************************************************************/
 
 app.get('/photos', (req, res) => {
+  function getRandomImage() {
+    const randomer = Math.floor(Math.random() * (10 - 1)) + 1; // Get random integer between 1 to 10
+
+    return `http://lorempixel.com/200/200/cats/${randomer}`;
+  }
+
+  function getRandomName() {
+    const names = ['Ted', 'Barney', 'Lily', 'Marshall', 'Robin'];
+    return names[Math.floor(Math.random() * names.length)];
+  }
+
+  function getRandomCountry() {
+    const countries = ['USA', 'Canada', 'Italy', 'Singapore', 'Indonesia', 'India', 'England', 'Egypt', 'Australia'];
+    return countries[Math.floor(Math.random() * countries.length)];
+  }
+
   const PHOTO_COUNT = 100
   const photos = [];
 
   for (var i = 0; i < PHOTO_COUNT; i++) {
-    const randomer = Math.floor(Math.random() * (10 - 1)) + 1; // Get random integer between 1 to 10
     const photo = {
       id: i,
-      url: `http://lorempixel.com/200/200/people/${randomer}`,
-      name: 'John Doe'
+      url: getRandomImage(),
+      name: getRandomName(),
+      country: getRandomCountry(),
     };
     photos.push(photo);
   }

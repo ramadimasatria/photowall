@@ -1,10 +1,25 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 
 import styles from './styles.css';
 
-const Photo = ({ url, name }) => (
-  <div className={styles.photoContainer}>
-    <img src={url} className={styles.photoImg} alt={name} />
+const Photo = ({ url, name, country, tileData }) => (
+  <div className={styles.container}>
+    <LazyLoad offset={2 * tileData.cellSize}>
+      <img
+        src={url}
+        className={styles.image}
+        alt={name}
+        height={tileData.cellSize}
+        width={tileData.cellSize}
+        />
+    </LazyLoad>
+
+    <div className={styles.caption}>
+      { name }
+      <br />
+      { country }
+    </div>
   </div>
 );
 

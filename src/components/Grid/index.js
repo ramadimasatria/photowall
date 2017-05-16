@@ -22,7 +22,7 @@ const Grid = ({ items, width, cellSize }) => {
 
           return (
             <Tile key={item.id} {...tileData}>
-              <Photo {...item} />
+              <Photo {...item} tileData={tileData} />
             </Tile>
           );
         })
