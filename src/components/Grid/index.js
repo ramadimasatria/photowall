@@ -71,6 +71,8 @@ class Grid extends React.Component {
         available = this.matrix[x][y] !== 'x';
         if (!available) break;
       }
+
+      if (!available) break;
     }
 
     return available;

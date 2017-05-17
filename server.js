@@ -9,10 +9,10 @@ const app = express();
  ************************************************************/
 
 app.get('/photos', (req, res) => {
-  function getRandomImage() {
+  function getRandomImage(col, row) {
     const randomer = Math.floor(Math.random() * 10) + 1; // Get random integer between 1 to 10
 
-    return `http://lorempixel.com/200/200/cats/${randomer}`;
+    return `http://lorempixel.com/${col * 200}/${row * 200}/cats/${randomer}`;
   }
 
   function getRandomName() {
@@ -33,13 +33,16 @@ app.get('/photos', (req, res) => {
   const photos = [];
 
   for (var i = 0; i < PHOTO_COUNT; i++) {
+    const col = getRandomSize();
+    const row = getRandomSize();
+
     const photo = {
       id: i,
-      url: getRandomImage(),
+      url: getRandomImage(col, row),
       name: getRandomName(),
       country: getRandomCountry(),
-      col: getRandomSize(),
-      row: getRandomSize(),
+      col,
+      row,
     };
     photos.push(photo);
   }
