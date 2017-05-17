@@ -29,25 +29,64 @@ app.get('/photos', (req, res) => {
     return Math.floor(Math.random() * 2) + 1; // Get random integer between 1 to 2;
   }
 
-  const PHOTO_COUNT = 100
-  const photos = [];
+  function generatePhotos() {
+    const PHOTO_COUNT = 100
+    const photos = [];
 
-  for (var i = 0; i < PHOTO_COUNT; i++) {
-    const col = getRandomSize();
-    const row = getRandomSize();
+    for (var i = 0; i < PHOTO_COUNT; i++) {
+      const col = getRandomSize();
+      const row = getRandomSize();
 
-    const photo = {
-      id: i,
-      type: 'photo',
-      url: getRandomImage(col, row),
-      name: getRandomName(),
-      country: getRandomCountry(),
-      size: `${col}x${row}`,
-    };
-    photos.push(photo);
+      const photo = {
+        id: `photo-${i}`,
+        type: 'photo',
+        url: getRandomImage(col, row),
+        name: getRandomName(),
+        country: getRandomCountry(),
+        size: `${col}x${row}`,
+      };
+      photos.push(photo);
+    }
+
+    return photos;
   }
 
-  res.send(JSON.stringify(photos));
+  function generateExpos() {
+    const EXPO_COUNT = 20;
+    const expos = [];
+
+    for (var i = 0; i < EXPO_COUNT; i++) {
+      const col = getRandomSize();
+      const row = getRandomSize();
+
+      const expo = {
+        id: `expo-${i}`,
+        type: 'expo',
+        text: 'Logo Here',
+        size: `${col}x${row}`,
+      };
+      expos.push(expo);
+    }
+
+    return expos;
+  }
+
+  function combinePhotosAndExpos(photos, expos) {
+    const combined = photos.slice(0);
+
+    expos.forEach((expo) => {
+      const randIndex = Math.floor(Math.random() * combined.length);
+      combined.splice(randIndex, 0, expo);
+    })
+
+    return combined;
+  }
+
+  const photos = generatePhotos();
+  const expos = generateExpos();
+  const combined = combinePhotosAndExpos(photos, expos);
+
+  res.send(JSON.stringify(combined));
 });
 
 /************************************************************

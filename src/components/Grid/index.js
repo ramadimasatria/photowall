@@ -6,6 +6,7 @@ import styles from './styles.css';
 
 import Tile from '../Tile';
 import Photo from '../Photo';
+import Expo from '../Expo';
 
 class Grid extends React.Component {
   constructor(props) {
@@ -133,18 +134,34 @@ class Grid extends React.Component {
         {
           items.map((item) => {
             const { col, row } = this._findCell(item);
+            const [colSpan, rowSpan] = item.size.split('x');
 
             const tileData = {
               col,
               row,
-              colSpan: item.col,
-              rowSpan: item.row,
+              colSpan,
+              rowSpan,
               cellSize,
             };
 
+            let TileContent;
+            switch (item.type) {
+              case 'expo':
+                TileContent = (
+                  <Expo {...item} />
+                );
+                break;
+
+              default:
+                TileContent = (
+                  <Photo {...item} tileData={tileData} />
+                );
+                break;
+            }
+
             return (
               <Tile key={item.id} {...tileData}>
-                <Photo {...item} tileData={tileData} />
+                { TileContent }
               </Tile>
             );
           })

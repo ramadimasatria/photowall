@@ -3,9 +3,10 @@ import LazyLoad from 'react-lazyload';
 
 import styles from './styles.css';
 
-const Photo = ({ url, name, country, row, col, tileData }) => {
-  const width = col * tileData.cellSize;
-  const height = row * tileData.cellSize;
+const Photo = ({ url, name, country, tileData }) => {
+  const { colSpan, rowSpan } = tileData;
+  const width = colSpan * tileData.cellSize;
+  const height = rowSpan * tileData.cellSize;
 
   return (
     <div className={styles.container}>
