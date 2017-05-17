@@ -38,8 +38,8 @@ app.get('/photos', (req, res) => {
       url: getRandomImage(),
       name: getRandomName(),
       country: getRandomCountry(),
-      col: 1,
-      row: 1,
+      col: getRandomSize(),
+      row: getRandomSize(),
     };
     photos.push(photo);
   }

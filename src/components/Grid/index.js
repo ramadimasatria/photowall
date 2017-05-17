@@ -91,12 +91,16 @@ class Grid extends React.Component {
     }
   }
 
-  _findNextEmptyCell(point) {
+  _findNextEmptyCell(point, checkCurrent = false) {
     const [x, y] = point;
 
     let nextX = x;
     let nextY = y;
+
     let found = false;
+    if (checkCurrent) {
+      found = this.matrix[nextX][nextY] !== 'x';
+    }
 
     while (!found) {
       nextY += 1;
@@ -134,7 +138,7 @@ class Grid extends React.Component {
 
     this._fillMatrix(point1, point2);
 
-    this.pointer = this._findNextEmptyCell(this.pointer);
+    this.pointer = this._findNextEmptyCell(this.pointer, true);
     this.buffer = this.pointer;
 
     return { col, row };
