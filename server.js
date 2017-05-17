@@ -38,11 +38,11 @@ app.get('/photos', (req, res) => {
 
     const photo = {
       id: i,
+      type: 'photo',
       url: getRandomImage(col, row),
       name: getRandomName(),
       country: getRandomCountry(),
-      col,
-      row,
+      size: `${col}x${row}`,
     };
     photos.push(photo);
   }

@@ -20,28 +20,6 @@ class Grid extends React.Component {
     this.buffer = this.pointer;
   }
 
-
-  componentWillReceiveProps(props) {
-    if (this.props.items.length === props.items.length) {
-      return;
-    }
-
-    this._updateMatrix(props.items);
-  }
-
-  _updateMatrix(items) {
-    const cellCount = items.reduce((acc, item) => {
-      const { col, row } = item;
-      const size = col * row;
-      return acc + size;
-    }, 0);
-
-    const rows = Math.ceil(cellCount / this.cols);
-    for (let i = 0; i < rows; i += 1) {
-      this._addRow();
-    }
-  }
-
   _addRow() {
     this.rows += 1;
     this.matrix.push([]);
@@ -50,14 +28,14 @@ class Grid extends React.Component {
     }
   }
 
-  _cellAvailable(point1, point2) {
+  _isCellAvailable(point1, point2) {
     const [x1, y1] = point1;
     const [x2, y2] = point2;
 
     let available = true;
 
     // Check if out of bound
-    if (y2 > this.cols - 1) {
+    if (y2 === this.cols) {
       return false;
     }
 
@@ -123,27 +101,28 @@ class Grid extends React.Component {
 
   _findCell(item) {
     const [x, y] = this.buffer;
+    const [sizeY, sizeX] = item.size.split('x');
 
     const point1 = [x, y];
     const point2 = [
-      x + (item.row - 1),
-      y + (item.col - 1),
+      x + (sizeX - 1),
+      y + (sizeY - 1),
     ];
 
-    if (!this._cellAvailable(point1, point2)) {
+    if (!this._isCellAvailable(point1, point2)) {
       this.buffer = this._findNextEmptyCell(this.buffer);
       return this._findCell(item);
     }
-
-    const row = x + 1;
-    const col = y + 1;
 
     this._fillMatrix(point1, point2);
 
     this.pointer = this._findNextEmptyCell(this.pointer, true);
     this.buffer = this.pointer;
 
-    return { col, row };
+    return {
+      col: y + 1,
+      row: x + 1,
+    };
   }
 
   render() {

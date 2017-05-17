@@ -1,6 +1,11 @@
 .container {
   position: relative;
   height: 100%;
+  cursor: pointer;
+}
+
+.container:hover .image{
+  transform: scale(1.1);
 }
 
 .image {
@@ -8,6 +13,8 @@
   top: 0;
   left: 0;
   width: 100%;
+
+  transition: all .4s ease-in-out;
 }
 
 .caption {
