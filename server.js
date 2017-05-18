@@ -163,5 +163,5 @@ const server = app.listen(port, () => {
   const host = server.address().address;
   const port = server.address().port;
 
-  console.log('Essential React listening at http://%s:%s', host, port);
+  console.log('Photowall listening at http://%s:%s', host, port);
 });
