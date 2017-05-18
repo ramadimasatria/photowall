@@ -6,7 +6,7 @@ import styles from './styles.css';
 
 import Tile from '../Tile';
 import Photo from '../Photo';
-import Expo from '../Expo';
+import Premium from '../Premium';
 
 class Grid extends React.Component {
   constructor(props) {
@@ -146,9 +146,9 @@ class Grid extends React.Component {
 
             let TileContent;
             switch (item.type) {
-              case 'expo':
+              case 'premium':
                 TileContent = (
-                  <Expo {...item} />
+                  <Premium {...item} />
                 );
                 break;
 

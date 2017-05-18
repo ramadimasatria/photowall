@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles.css';
 
-const Expo = ({ text }) => {
-  const colors = ['red', 'yellow', 'blue', 'green', 'orange'];
+const Premium = ({ text }) => {
+  const colors = ['red', 'yellow', 'blue', 'green', 'orange', 'black'];
   const color = colors[Math.floor(Math.random() * colors.length)];
 
   return (
@@ -13,4 +13,4 @@ const Expo = ({ text }) => {
   );
 };
 
-export default Expo;
+export default Premium;

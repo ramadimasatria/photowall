@@ -39,16 +39,13 @@ app.get('/photos', (req, res) => {
     const photos = [];
 
     for (var i = 0; i < PHOTO_COUNT; i++) {
-      const col = getRandomSize();
-      const row = getRandomSize();
-
       const photo = {
         id: `photo-${i}`,
         type: 'photo',
-        url: getRandomImage(col, row),
+        url: getRandomImage(1, 1),
         name: getRandomName(),
         country: getRandomCountry(),
-        size: `${col}x${row}`,
+        size: '1x1',
       };
       photos.push(photo);
     }
@@ -56,40 +53,40 @@ app.get('/photos', (req, res) => {
     return photos;
   }
 
-  function generateExpos() {
-    const EXPO_COUNT = 20;
-    const expos = [];
+  function generatePremiums() {
+    const PREMIUM_COUNT = 20;
+    const premiums = [];
 
-    for (var i = 0; i < EXPO_COUNT; i++) {
+    for (var i = 0; i < PREMIUM_COUNT; i++) {
       const col = getRandomSize();
       const row = getRandomSize();
 
-      const expo = {
-        id: `expo-${i}`,
-        type: 'expo',
+      const premium = {
+        id: `premium-${i}`,
+        type: 'premium',
         text: getRandomText(),
         size: `${col}x${row}`,
       };
-      expos.push(expo);
+      premiums.push(premium);
     }
 
-    return expos;
+    return premiums;
   }
 
-  function combinePhotosAndExpos(photos, expos) {
+  function combinePhotosAndPremiums(photos, premiums) {
     const combined = photos.slice(0);
 
-    expos.forEach((expo) => {
+    premiums.forEach((premium) => {
       const randIndex = Math.floor(Math.random() * combined.length);
-      combined.splice(randIndex, 0, expo);
+      combined.splice(randIndex, 0, premium);
     })
 
     return combined;
   }
 
   const photos = generatePhotos();
-  const expos = generateExpos();
-  const combined = combinePhotosAndExpos(photos, expos);
+  const premiums = generatePremiums();
+  const combined = combinePhotosAndPremiums(photos, premiums);
 
   res.send(JSON.stringify(combined));
 });
