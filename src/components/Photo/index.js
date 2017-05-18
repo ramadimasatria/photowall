@@ -2,6 +2,7 @@ import React from 'react';
 import LazyLoad from 'react-lazyload';
 
 import styles from './styles.css';
+import FadeImage from '../FadeImage';
 
 const Photo = ({ url, name, country, tileData }) => {
   const { colSpan, rowSpan } = tileData;
@@ -10,14 +11,15 @@ const Photo = ({ url, name, country, tileData }) => {
 
   return (
     <div className={styles.container}>
-      <LazyLoad offset={2 * tileData.cellSize} height={height}>
-        <img
-          src={url}
-          className={styles.image}
-          alt={name}
-          width={width}
-          height={height}
-        />
+      <LazyLoad offset={2 * tileData.cellSize} height={height} once>
+        <div className={styles.image}>
+          <FadeImage
+            src={url}
+            alt={name}
+            width={width}
+            height={height}
+            />
+        </div>
       </LazyLoad>
 
       <div className={styles.caption}>
