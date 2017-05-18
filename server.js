@@ -29,6 +29,11 @@ app.get('/photos', (req, res) => {
     return Math.floor(Math.random() * 2) + 1; // Get random integer between 1 to 2;
   }
 
+  function getRandomText() {
+    const texts = ['Be Kind', 'Love The Earth', 'No More War', 'Spread Love', 'Make Peace'];
+    return texts[Math.floor(Math.random() * texts.length)];
+  }
+
   function generatePhotos() {
     const PHOTO_COUNT = 100
     const photos = [];
@@ -62,7 +67,7 @@ app.get('/photos', (req, res) => {
       const expo = {
         id: `expo-${i}`,
         type: 'expo',
-        text: 'Logo Here',
+        text: getRandomText(),
         size: `${col}x${row}`,
       };
       expos.push(expo);

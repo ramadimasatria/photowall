@@ -1,9 +1,25 @@
 .container {
+  position: relative;
+  height: 100%;
 }
 
 .text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 20px;
+
   font-weight: bold;
   font-size: 24px;
   text-align: center;
   color: #fff;
+  line-height: 1.4;
 }
+
+.red { background-color: #b31515 }
+.blue { background-color: #0707d2 }
+.yellow { background-color: #d4d413 }
+.green { background-color: #00bb00 }
+.orange { background-color: #d48d0a }
